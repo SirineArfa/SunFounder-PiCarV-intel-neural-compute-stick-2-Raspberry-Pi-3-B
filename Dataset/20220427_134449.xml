@@ -1,0 +1,50 @@
+<annotation>
+	<folder>P2M Data</folder>
+	<filename>20220427_134449.jpg</filename>
+	<path>C:\Users\Asus\Desktop\Large files\P2M Data\20220427_134449.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>4128</width>
+		<height>3096</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>2976</xmin>
+			<ymin>695</ymin>
+			<xmax>3837</xmax>
+			<ymax>1938</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>stop_sign</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1490</xmin>
+			<ymin>390</ymin>
+			<xmax>1728</xmax>
+			<ymax>733</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>red_light</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1814</xmin>
+			<ymin>338</ymin>
+			<xmax>2152</xmax>
+			<ymax>1071</ymax>
+		</bndbox>
+	</object>
+</annotation>

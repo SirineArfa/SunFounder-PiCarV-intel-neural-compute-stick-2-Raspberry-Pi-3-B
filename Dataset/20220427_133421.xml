@@ -1,0 +1,26 @@
+<annotation>
+	<folder>P2M Data</folder>
+	<filename>20220427_133421.jpg</filename>
+	<path>C:\Users\Asus\Desktop\Large files\P2M Data\20220427_133421.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>4128</width>
+		<height>3096</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>40_sign</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>842</xmin>
+			<ymin>842</ymin>
+			<xmax>2118</xmax>
+			<ymax>2157</ymax>
+		</bndbox>
+	</object>
+</annotation>
