@@ -1,0 +1,1560 @@
+<net name="lane_navigation_final " version="11">
+	<layers>
+		<layer id="0" name="conv2d_1_input" type="Parameter" version="opset1">
+			<data shape="1,66,200,3" element_type="f32" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="conv2d_1_input" />
+				<attribute name="old_api_map_element_type" version="0" value="f16" />
+				<attribute name="old_api_map_order" version="0" value="0, 2, 3, 1" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP32" names="Func/StatefulPartitionedCall/input/_0:0,conv2d_1_input:0">
+					<dim>1</dim>
+					<dim>66</dim>
+					<dim>200</dim>
+					<dim>3</dim>
+					<rt_info>
+						<attribute name="layout" version="0" layout="[N,H,W,C]" />
+					</rt_info>
+				</port>
+			</output>
+		</layer>
+		<layer id="1" name="conv2d_1_input/Transpose([0 3 1 2])/value10421637" type="Const" version="opset1">
+			<data element_type="i64" shape="4" offset="0" size="32" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="conv2d_1_input/Transpose([0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="2" name="conv2d_1_input/Transpose([0 3 1 2])" type="Transpose" version="opset1">
+			<rt_info>
+				<attribute name="fused_names" version="0" value="conv2d_1_input/Transpose([0" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>66</dim>
+					<dim>200</dim>
+					<dim>3</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>66</dim>
+					<dim>200</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="3" name="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Conv2D/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="24, 3, 5, 5" offset="32" size="3600" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Conv2D/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>24</dim>
+					<dim>3</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="4" name="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Conv2D/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Conv2D/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>24</dim>
+					<dim>3</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Conv2D/ReadVariableOp:0">
+					<dim>24</dim>
+					<dim>3</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="5" name="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Conv2D" type="Convolution" version="opset1">
+			<data strides="2, 2" dilations="1, 1" pads_begin="0, 0" pads_end="0, 0" auto_pad="valid" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Conv2D" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>66</dim>
+					<dim>200</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>24</dim>
+					<dim>3</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Conv2D:0">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>31</dim>
+					<dim>98</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="6" name="StatefulPartitionedCall/Nvidia_Model/conv2d_1/BiasAdd/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 24, 1, 1" offset="3632" size="48" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_1/BiasAdd/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="7" name="StatefulPartitionedCall/Nvidia_Model/conv2d_1/BiasAdd/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_1/BiasAdd/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_1/BiasAdd/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="8" name="StatefulPartitionedCall/Nvidia_Model/conv2d_1/BiasAdd/Add" type="Add" version="opset1">
+			<data auto_broadcast="numpy" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_1/BiasAdd/Add" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>31</dim>
+					<dim>98</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_1/BiasAdd:0">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>31</dim>
+					<dim>98</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="9" name="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Elu" type="Elu" version="opset1">
+			<data alpha="1" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Elu" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>31</dim>
+					<dim>98</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_1/Elu:0">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>31</dim>
+					<dim>98</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="10" name="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Conv2D/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="36, 24, 5, 5" offset="3680" size="43200" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Conv2D/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>36</dim>
+					<dim>24</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="11" name="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Conv2D/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Conv2D/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>36</dim>
+					<dim>24</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Conv2D/ReadVariableOp:0">
+					<dim>36</dim>
+					<dim>24</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="12" name="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Conv2D" type="Convolution" version="opset1">
+			<data strides="2, 2" dilations="1, 1" pads_begin="0, 0" pads_end="0, 0" auto_pad="valid" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Conv2D" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>24</dim>
+					<dim>31</dim>
+					<dim>98</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>36</dim>
+					<dim>24</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Conv2D:0">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>14</dim>
+					<dim>47</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="13" name="StatefulPartitionedCall/Nvidia_Model/conv2d_2/BiasAdd/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 36, 1, 1" offset="46880" size="72" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_2/BiasAdd/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="14" name="StatefulPartitionedCall/Nvidia_Model/conv2d_2/BiasAdd/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_2/BiasAdd/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_2/BiasAdd/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="15" name="StatefulPartitionedCall/Nvidia_Model/conv2d_2/BiasAdd/Add" type="Add" version="opset1">
+			<data auto_broadcast="numpy" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_2/BiasAdd/Add" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>14</dim>
+					<dim>47</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_2/BiasAdd:0">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>14</dim>
+					<dim>47</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="16" name="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Elu" type="Elu" version="opset1">
+			<data alpha="1" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Elu" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>14</dim>
+					<dim>47</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_2/Elu:0">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>14</dim>
+					<dim>47</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="17" name="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Conv2D/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="48, 36, 5, 5" offset="46952" size="86400" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Conv2D/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>48</dim>
+					<dim>36</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="18" name="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Conv2D/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Conv2D/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>48</dim>
+					<dim>36</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Conv2D/ReadVariableOp:0">
+					<dim>48</dim>
+					<dim>36</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="19" name="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Conv2D" type="Convolution" version="opset1">
+			<data strides="2, 2" dilations="1, 1" pads_begin="0, 0" pads_end="0, 0" auto_pad="valid" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Conv2D" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>36</dim>
+					<dim>14</dim>
+					<dim>47</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>48</dim>
+					<dim>36</dim>
+					<dim>5</dim>
+					<dim>5</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Conv2D:0">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>5</dim>
+					<dim>22</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="20" name="StatefulPartitionedCall/Nvidia_Model/conv2d_3/BiasAdd/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 48, 1, 1" offset="133352" size="96" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_3/BiasAdd/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="21" name="StatefulPartitionedCall/Nvidia_Model/conv2d_3/BiasAdd/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_3/BiasAdd/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_3/BiasAdd/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="22" name="StatefulPartitionedCall/Nvidia_Model/conv2d_3/BiasAdd/Add" type="Add" version="opset1">
+			<data auto_broadcast="numpy" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_3/BiasAdd/Add" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>5</dim>
+					<dim>22</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_3/BiasAdd:0">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>5</dim>
+					<dim>22</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="23" name="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Elu" type="Elu" version="opset1">
+			<data alpha="1" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Elu" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>5</dim>
+					<dim>22</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_3/Elu:0">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>5</dim>
+					<dim>22</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="24" name="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Conv2D/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="64, 48, 3, 3" offset="133448" size="55296" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Conv2D/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>48</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="25" name="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Conv2D/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Conv2D/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>48</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Conv2D/ReadVariableOp:0">
+					<dim>64</dim>
+					<dim>48</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="26" name="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Conv2D" type="Convolution" version="opset1">
+			<data strides="1, 1" dilations="1, 1" pads_begin="0, 0" pads_end="0, 0" auto_pad="valid" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Conv2D" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>48</dim>
+					<dim>5</dim>
+					<dim>22</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>64</dim>
+					<dim>48</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Conv2D:0">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>20</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="27" name="StatefulPartitionedCall/Nvidia_Model/conv2d_4/BiasAdd/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 64, 1, 1" offset="188744" size="128" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_4/BiasAdd/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="28" name="StatefulPartitionedCall/Nvidia_Model/conv2d_4/BiasAdd/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_4/BiasAdd/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_4/BiasAdd/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="29" name="StatefulPartitionedCall/Nvidia_Model/conv2d_4/BiasAdd/Add" type="Add" version="opset1">
+			<data auto_broadcast="numpy" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_4/BiasAdd/Add" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>20</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_4/BiasAdd:0">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>20</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="30" name="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Elu" type="Elu" version="opset1">
+			<data alpha="1" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Elu" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>20</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_4/Elu:0,StatefulPartitionedCall/Nvidia_Model/dropout_1/Identity:0">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>20</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="31" name="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Conv2D/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="64, 64, 3, 3" offset="188872" size="73728" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Conv2D/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="32" name="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Conv2D/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Conv2D/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Conv2D/ReadVariableOp:0">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="33" name="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Conv2D" type="Convolution" version="opset1">
+			<data strides="1, 1" dilations="1, 1" pads_begin="0, 0" pads_end="0, 0" auto_pad="valid" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Conv2D" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>20</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>64</dim>
+					<dim>64</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Conv2D:0">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>18</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="34" name="StatefulPartitionedCall/Nvidia_Model/conv2d_5/BiasAdd/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 64, 1, 1" offset="262600" size="128" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_5/BiasAdd/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="35" name="StatefulPartitionedCall/Nvidia_Model/conv2d_5/BiasAdd/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_5/BiasAdd/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_5/BiasAdd/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="36" name="StatefulPartitionedCall/Nvidia_Model/conv2d_5/BiasAdd/Add" type="Add" version="opset1">
+			<data auto_broadcast="numpy" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_5/BiasAdd/Add" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>18</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_5/BiasAdd:0">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>18</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="37" name="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Elu" type="Elu" version="opset1">
+			<data alpha="1" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Elu" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>18</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>18</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="38" name="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Elu/Transpose/value9981655" type="Const" version="opset1">
+			<data element_type="i64" shape="4" offset="262728" size="32" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Elu/Transpose/value9981655" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="39" name="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Elu/Transpose" type="Transpose" version="opset1">
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Elu/Transpose" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>64</dim>
+					<dim>1</dim>
+					<dim>18</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/conv2d_5/Elu:0">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>18</dim>
+					<dim>64</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="40" name="Constant_318" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="262760" size="8" />
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="41" name="StatefulPartitionedCall/Nvidia_Model/dense_1/MatMul/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="100, 1152" offset="262768" size="230400" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_1/MatMul/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>100</dim>
+					<dim>1152</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="42" name="StatefulPartitionedCall/Nvidia_Model/dense_1/MatMul/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_1/MatMul/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>100</dim>
+					<dim>1152</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_1/MatMul/ReadVariableOp:0">
+					<dim>100</dim>
+					<dim>1152</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="43" name="ShapeOf_316" type="ShapeOf" version="opset3">
+			<data output_type="i64" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1152</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="I64">
+					<dim>2</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="44" name="Constant_315" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="493168" size="8" />
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="45" name="Constant_314" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="493176" size="8" />
+			<output>
+				<port id="0" precision="I64" />
+			</output>
+		</layer>
+		<layer id="46" name="Gather_317" type="Gather" version="opset1">
+			<input>
+				<port id="0" precision="I64">
+					<dim>2</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64" />
+			</input>
+			<output>
+				<port id="3" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="47" name="StatefulPartitionedCall/Nvidia_Model/flatten_1/Const" type="Concat" version="opset1">
+			<data axis="0" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/flatten_1/Const" />
+			</rt_info>
+			<input>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="I64" names="StatefulPartitionedCall/Nvidia_Model/flatten_1/Const:0">
+					<dim>2</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="48" name="StatefulPartitionedCall/Nvidia_Model/flatten_1/Reshape" type="Reshape" version="opset1">
+			<data special_zero="false" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/flatten_1/Reshape" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>18</dim>
+					<dim>64</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>2</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dropout_2/Identity:0,StatefulPartitionedCall/Nvidia_Model/flatten_1/Reshape:0">
+					<dim>1</dim>
+					<dim>1152</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="49" name="StatefulPartitionedCall/Nvidia_Model/dense_1/MatMul" type="MatMul" version="opset1">
+			<data transpose_a="false" transpose_b="true" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_1/MatMul" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1152</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>100</dim>
+					<dim>1152</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_1/MatMul:0">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="50" name="StatefulPartitionedCall/Nvidia_Model/dense_1/BiasAdd/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 100" offset="493184" size="200" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_1/BiasAdd/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="51" name="StatefulPartitionedCall/Nvidia_Model/dense_1/BiasAdd/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_1/BiasAdd/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_1/BiasAdd/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="52" name="StatefulPartitionedCall/Nvidia_Model/dense_1/BiasAdd/Add" type="Add" version="opset1">
+			<data auto_broadcast="numpy" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_1/BiasAdd/Add" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_1/BiasAdd:0">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="53" name="StatefulPartitionedCall/Nvidia_Model/dense_1/Elu" type="Elu" version="opset1">
+			<data alpha="1" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_1/Elu" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_1/Elu:0">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="54" name="StatefulPartitionedCall/Nvidia_Model/dense_2/MatMul/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="50, 100" offset="493384" size="10000" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_2/MatMul/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>50</dim>
+					<dim>100</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="55" name="StatefulPartitionedCall/Nvidia_Model/dense_2/MatMul/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_2/MatMul/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>50</dim>
+					<dim>100</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_2/MatMul/ReadVariableOp:0">
+					<dim>50</dim>
+					<dim>100</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="56" name="StatefulPartitionedCall/Nvidia_Model/dense_2/MatMul" type="MatMul" version="opset1">
+			<data transpose_a="false" transpose_b="true" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_2/MatMul" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>100</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>50</dim>
+					<dim>100</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_2/MatMul:0">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="57" name="StatefulPartitionedCall/Nvidia_Model/dense_2/BiasAdd/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 50" offset="503384" size="100" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_2/BiasAdd/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="58" name="StatefulPartitionedCall/Nvidia_Model/dense_2/BiasAdd/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_2/BiasAdd/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_2/BiasAdd/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="59" name="StatefulPartitionedCall/Nvidia_Model/dense_2/BiasAdd/Add" type="Add" version="opset1">
+			<data auto_broadcast="numpy" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_2/BiasAdd/Add" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_2/BiasAdd:0">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="60" name="StatefulPartitionedCall/Nvidia_Model/dense_2/Elu" type="Elu" version="opset1">
+			<data alpha="1" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_2/Elu" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_2/Elu:0">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="61" name="StatefulPartitionedCall/Nvidia_Model/dense_3/MatMul/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="10, 50" offset="503484" size="1000" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_3/MatMul/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>10</dim>
+					<dim>50</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="62" name="StatefulPartitionedCall/Nvidia_Model/dense_3/MatMul/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_3/MatMul/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>10</dim>
+					<dim>50</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_3/MatMul/ReadVariableOp:0">
+					<dim>10</dim>
+					<dim>50</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="63" name="StatefulPartitionedCall/Nvidia_Model/dense_3/MatMul" type="MatMul" version="opset1">
+			<data transpose_a="false" transpose_b="true" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_3/MatMul" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>50</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>10</dim>
+					<dim>50</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_3/MatMul:0">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="64" name="StatefulPartitionedCall/Nvidia_Model/dense_3/BiasAdd/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 10" offset="504484" size="20" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_3/BiasAdd/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="65" name="StatefulPartitionedCall/Nvidia_Model/dense_3/BiasAdd/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_3/BiasAdd/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_3/BiasAdd/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="66" name="StatefulPartitionedCall/Nvidia_Model/dense_3/BiasAdd/Add" type="Add" version="opset1">
+			<data auto_broadcast="numpy" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_3/BiasAdd/Add" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_3/BiasAdd:0">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="67" name="StatefulPartitionedCall/Nvidia_Model/dense_3/Elu" type="Elu" version="opset1">
+			<data alpha="1" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_3/Elu" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_3/Elu:0">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="68" name="StatefulPartitionedCall/Nvidia_Model/dense_4/MatMul/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 10" offset="504504" size="20" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_4/MatMul/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="69" name="StatefulPartitionedCall/Nvidia_Model/dense_4/MatMul/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_4/MatMul/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_4/MatMul/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="70" name="StatefulPartitionedCall/Nvidia_Model/dense_4/MatMul" type="MatMul" version="opset1">
+			<data transpose_a="false" transpose_b="true" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_4/MatMul" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>10</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_4/MatMul:0">
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="71" name="StatefulPartitionedCall/Nvidia_Model/dense_4/BiasAdd/ReadVariableOp_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="1, 1" offset="504524" size="2" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_4/BiasAdd/ReadVariableOp_compressed" />
+			</rt_info>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="72" name="StatefulPartitionedCall/Nvidia_Model/dense_4/BiasAdd/ReadVariableOp" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_4/BiasAdd/ReadVariableOp" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32" names="StatefulPartitionedCall/Nvidia_Model/dense_4/BiasAdd/ReadVariableOp:0">
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="73" name="StatefulPartitionedCall/Nvidia_Model/dense_4/BiasAdd/Add" type="Add" version="opset1">
+			<data auto_broadcast="numpy" />
+			<rt_info>
+				<attribute name="fused_names" version="0" value="StatefulPartitionedCall/Nvidia_Model/dense_4/BiasAdd/Add" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="Func/StatefulPartitionedCall/output/_19:0,Identity:0,StatefulPartitionedCall/Identity:0,StatefulPartitionedCall/Nvidia_Model/dense_4/BiasAdd:0">
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="74" name="Func/StatefulPartitionedCall/output/_19:0" type="Result" version="opset1">
+			<rt_info>
+				<attribute name="fused_names" version="0" value="Func/StatefulPartitionedCall/output/_19:0" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+		</layer>
+	</layers>
+	<edges>
+		<edge from-layer="0" from-port="0" to-layer="2" to-port="0" />
+		<edge from-layer="1" from-port="0" to-layer="2" to-port="1" />
+		<edge from-layer="2" from-port="2" to-layer="5" to-port="0" />
+		<edge from-layer="3" from-port="0" to-layer="4" to-port="0" />
+		<edge from-layer="4" from-port="1" to-layer="5" to-port="1" />
+		<edge from-layer="5" from-port="2" to-layer="8" to-port="0" />
+		<edge from-layer="6" from-port="0" to-layer="7" to-port="0" />
+		<edge from-layer="7" from-port="1" to-layer="8" to-port="1" />
+		<edge from-layer="8" from-port="2" to-layer="9" to-port="0" />
+		<edge from-layer="9" from-port="1" to-layer="12" to-port="0" />
+		<edge from-layer="10" from-port="0" to-layer="11" to-port="0" />
+		<edge from-layer="11" from-port="1" to-layer="12" to-port="1" />
+		<edge from-layer="12" from-port="2" to-layer="15" to-port="0" />
+		<edge from-layer="13" from-port="0" to-layer="14" to-port="0" />
+		<edge from-layer="14" from-port="1" to-layer="15" to-port="1" />
+		<edge from-layer="15" from-port="2" to-layer="16" to-port="0" />
+		<edge from-layer="16" from-port="1" to-layer="19" to-port="0" />
+		<edge from-layer="17" from-port="0" to-layer="18" to-port="0" />
+		<edge from-layer="18" from-port="1" to-layer="19" to-port="1" />
+		<edge from-layer="19" from-port="2" to-layer="22" to-port="0" />
+		<edge from-layer="20" from-port="0" to-layer="21" to-port="0" />
+		<edge from-layer="21" from-port="1" to-layer="22" to-port="1" />
+		<edge from-layer="22" from-port="2" to-layer="23" to-port="0" />
+		<edge from-layer="23" from-port="1" to-layer="26" to-port="0" />
+		<edge from-layer="24" from-port="0" to-layer="25" to-port="0" />
+		<edge from-layer="25" from-port="1" to-layer="26" to-port="1" />
+		<edge from-layer="26" from-port="2" to-layer="29" to-port="0" />
+		<edge from-layer="27" from-port="0" to-layer="28" to-port="0" />
+		<edge from-layer="28" from-port="1" to-layer="29" to-port="1" />
+		<edge from-layer="29" from-port="2" to-layer="30" to-port="0" />
+		<edge from-layer="30" from-port="1" to-layer="33" to-port="0" />
+		<edge from-layer="31" from-port="0" to-layer="32" to-port="0" />
+		<edge from-layer="32" from-port="1" to-layer="33" to-port="1" />
+		<edge from-layer="33" from-port="2" to-layer="36" to-port="0" />
+		<edge from-layer="34" from-port="0" to-layer="35" to-port="0" />
+		<edge from-layer="35" from-port="1" to-layer="36" to-port="1" />
+		<edge from-layer="36" from-port="2" to-layer="37" to-port="0" />
+		<edge from-layer="37" from-port="1" to-layer="39" to-port="0" />
+		<edge from-layer="38" from-port="0" to-layer="39" to-port="1" />
+		<edge from-layer="39" from-port="2" to-layer="48" to-port="0" />
+		<edge from-layer="40" from-port="0" to-layer="47" to-port="0" />
+		<edge from-layer="41" from-port="0" to-layer="42" to-port="0" />
+		<edge from-layer="42" from-port="1" to-layer="43" to-port="0" />
+		<edge from-layer="42" from-port="1" to-layer="49" to-port="1" />
+		<edge from-layer="43" from-port="1" to-layer="46" to-port="0" />
+		<edge from-layer="44" from-port="0" to-layer="46" to-port="1" />
+		<edge from-layer="45" from-port="0" to-layer="46" to-port="2" />
+		<edge from-layer="46" from-port="3" to-layer="47" to-port="1" />
+		<edge from-layer="47" from-port="2" to-layer="48" to-port="1" />
+		<edge from-layer="48" from-port="2" to-layer="49" to-port="0" />
+		<edge from-layer="49" from-port="2" to-layer="52" to-port="0" />
+		<edge from-layer="50" from-port="0" to-layer="51" to-port="0" />
+		<edge from-layer="51" from-port="1" to-layer="52" to-port="1" />
+		<edge from-layer="52" from-port="2" to-layer="53" to-port="0" />
+		<edge from-layer="53" from-port="1" to-layer="56" to-port="0" />
+		<edge from-layer="54" from-port="0" to-layer="55" to-port="0" />
+		<edge from-layer="55" from-port="1" to-layer="56" to-port="1" />
+		<edge from-layer="56" from-port="2" to-layer="59" to-port="0" />
+		<edge from-layer="57" from-port="0" to-layer="58" to-port="0" />
+		<edge from-layer="58" from-port="1" to-layer="59" to-port="1" />
+		<edge from-layer="59" from-port="2" to-layer="60" to-port="0" />
+		<edge from-layer="60" from-port="1" to-layer="63" to-port="0" />
+		<edge from-layer="61" from-port="0" to-layer="62" to-port="0" />
+		<edge from-layer="62" from-port="1" to-layer="63" to-port="1" />
+		<edge from-layer="63" from-port="2" to-layer="66" to-port="0" />
+		<edge from-layer="64" from-port="0" to-layer="65" to-port="0" />
+		<edge from-layer="65" from-port="1" to-layer="66" to-port="1" />
+		<edge from-layer="66" from-port="2" to-layer="67" to-port="0" />
+		<edge from-layer="67" from-port="1" to-layer="70" to-port="0" />
+		<edge from-layer="68" from-port="0" to-layer="69" to-port="0" />
+		<edge from-layer="69" from-port="1" to-layer="70" to-port="1" />
+		<edge from-layer="70" from-port="2" to-layer="73" to-port="0" />
+		<edge from-layer="71" from-port="0" to-layer="72" to-port="0" />
+		<edge from-layer="72" from-port="1" to-layer="73" to-port="1" />
+		<edge from-layer="73" from-port="2" to-layer="74" to-port="0" />
+	</edges>
+<meta_data>
+		<MO_version value="2022.1.0-7019-cdb9bec7210-releases/2022/1" />
+		<Runtime_version value="2022.1.0-7019-cdb9bec7210-releases/2022/1" />
+		<legacy_path value="True" />
+		<cli_parameters>
+			<caffe_parser_path value="DIR" />
+			<compress_fp16 value="True" />
+			<data_type value="FP16" />
+			<disable_nhwc_to_nchw value="False" />
+			<disable_omitting_optional value="False" />
+			<disable_resnet_optimization value="False" />
+			<disable_weights_compression value="False" />
+			<enable_concat_optimization value="False" />
+			<enable_flattening_nested_params value="False" />
+			<enable_ssd_gluoncv value="False" />
+			<extensions value="DIR" />
+			<framework value="tf" />
+			<freeze_placeholder_with_value value="{}" />
+			<input_model_is_text value="False" />
+			<k value="DIR/CustomLayersMapping.xml" />
+			<layout value="()" />
+			<layout_values value="{}" />
+			<legacy_mxnet_model value="False" />
+			<log_level value="ERROR" />
+			<mean_scale_values value="{}" />
+			<mean_values value="()" />
+			<model_name value="lane_navigation_final " />
+			<output_dir value="DIR" />
+			<placeholder_data_types value="{}" />
+			<progress value="True" />
+			<remove_memory value="False" />
+			<remove_output_softmax value="False" />
+			<reverse_input_channels value="True" />
+			<save_params_from_nd value="False" />
+			<saved_model_dir value="DIR" />
+			<scale_values value="()" />
+			<silent value="False" />
+			<source_layout value="()" />
+			<static_shape value="False" />
+			<stream_output value="True" />
+			<target_layout value="()" />
+			<transform value="" />
+			<use_legacy_frontend value="False" />
+			<use_new_frontend value="False" />
+			<unset unset_cli_parameters="batch, counts, disable_fusing, finegrain_fusing, input, input_checkpoint, input_meta_graph, input_model, input_proto, input_shape, input_symbol, mean_file, mean_file_offsets, nd_prefix_name, output, packed_user_shapes, placeholder_shapes, pretrained_model_name, saved_model_tags, scale, tensorboard_logdir, tensorflow_custom_layer_libraries, tensorflow_custom_operations_config_update, tensorflow_object_detection_api_pipeline_config, tensorflow_use_custom_operations_config, transformations_config" />
+		</cli_parameters>
+	</meta_data>
+</net>
