@@ -1,0 +1,34 @@
+item {
+    id: 1
+    name: '20_sign'
+}
+
+item {
+    id: 2
+    name: '40_sign'
+}
+
+item {
+    id: 3
+    name: 'green_light'
+}
+
+item {
+    id: 4
+    name: 'person'
+}
+
+item {
+    id: 5
+    name: 'peson'
+}
+
+item {
+    id: 6
+    name: 'red_light'
+}
+
+item {
+    id: 7
+    name: 'stop_sign'
+}
